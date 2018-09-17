@@ -1,10 +1,10 @@
 # Check-Exact
 
-[![Build Status](https://travis-ci.org/jehy/check-exact.svg?branch=master)](https://travis-ci.org/jehy/check-exact)
-[![dependencies Status](https://david-dm.org/jehy/check-exact/status.svg)](https://david-dm.org/jehy/check-exact)
-[![devDependencies Status](https://david-dm.org/jehy/check-exact/dev-status.svg)](https://david-dm.org/jehy/check-exact?type=dev)
-[![Coverage Status](https://coveralls.io/repos/github/jehy/check-exact/badge.svg?branch=master)](https://coveralls.io/github/jehy/check-exact?branch=master)
-[![Known Vulnerabilities](https://snyk.io/test/github/jehy/check-exact/badge.svg)](https://snyk.io/test/github/jehy/check-exact)
+[![Build Status](https://travis-ci.org/jehy/checkExact.svg?branch=master)](https://travis-ci.org/jehy/checkExact)
+[![dependencies Status](https://david-dm.org/jehy/checkExact/status.svg)](https://david-dm.org/jehy/checkExact)
+[![devDependencies Status](https://david-dm.org/jehy/checkExact/dev-status.svg)](https://david-dm.org/jehy/checkExact?type=dev)
+[![Coverage Status](https://coveralls.io/repos/github/jehy/checkExact/badge.svg?branch=master)](https://coveralls.io/github/jehy/checkExact?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/jehy/checkExact/badge.svg)](https://snyk.io/test/github/jehy/checkExact)
 
 Simple module for checking if all your project dependencies are exact.
 
