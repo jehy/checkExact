@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@ott/utility-card-validator": "1.0.0",
+    "JSV": "git+https://github.com/onetwotrip/JSV.git",
+    "ws.js": "git+https://github.com/onetwotrip/ws.js.git",
+    "xml2js": "0.4.8",
+    "xml2json": "0.5.1",
+    "xmlbuilder": "2.6.4"
+  },
+  "devDependencies": {
+    "sinon": "4.5.0"
+  }
+}
