@@ -11,7 +11,7 @@ Simple module for checking if all your project dependencies are exact.
 #### Usage (code)
 
 ```js
-const checkExact = require('check-exact);
+const checkExact = require('check-exact');
 
 // check by package data
 const packageData = require('./package.json')
