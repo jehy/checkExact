@@ -1,5 +1,7 @@
 # Check-Exact
 
+[![npm](https://img.shields.io/npm/v/check-exact.svg)](https://npm.im/check-exact)
+[![license](https://img.shields.io/npm/l/check-exact.svg)](https://npm.im/check-exact)
 [![Build Status](https://travis-ci.org/jehy/checkExact.svg?branch=master)](https://travis-ci.org/jehy/checkExact)
 [![dependencies Status](https://david-dm.org/jehy/checkExact/status.svg)](https://david-dm.org/jehy/checkExact)
 [![devDependencies Status](https://david-dm.org/jehy/checkExact/dev-status.svg)](https://david-dm.org/jehy/checkExact?type=dev)
