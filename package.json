@@ -3,7 +3,7 @@
   "bin": {
     "check-exact": "bin/bin.js"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "check node project for exact dependencies",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "author": "Jehy http://github.com/jehy",
   "devDependencies": {
     "coveralls": "^3.0.2",
-    "eslint": "^5.6.1",
+    "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
@@ -28,7 +28,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "mocha": "^5.2.0",
     "chai": "^4.2.0",
-    "nyc": "^13.0.1"
+    "nyc": "^13.1.0"
   },
   "engines": {
     "node": ">=8"

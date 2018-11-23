@@ -4,7 +4,7 @@
 
 const fs = require('fs');
 
-const exactOnlyRegExp = /^[0-9.]+$/;
+const nonExactCharacters = '~^*x><|'.split('');
 
 function checkExact(deps) {
   return Object.entries(deps)
@@ -16,7 +16,7 @@ function checkExact(deps) {
           return res;
         }
       }
-      else if (!exactOnlyRegExp.test(value)) {
+      else if (nonExactCharacters.some(char=>value.includes(char))) {
         res.log.push(`Dependency ${key} should be exact, got "${value}"`);
         res.result = true;
         return res;
