@@ -1,28 +1,32 @@
-/* eslint-disable no-console */
-
 'use strict';
 
 const fs = require('fs');
 
 const nonExactCharacters = '~^*x><|'.split('');
 
-function checkExact(deps) {
+function checkExactVersion(key, value, res)
+{
+  if (value.indexOf('git+') === 0) {
+    if (!value.includes('#')) {
+      res.log.push(`Dependency ${key} should be linked to git commit or branch, got "${value}"`);
+      res.result = false;
+      return res;
+    }
+    return res;
+  }
+  if (nonExactCharacters.some(char=>value.includes(char))) {
+    res.log.push(`Dependency ${key} should be exact, got "${value}"`);
+    res.result = false;
+    return res;
+  }
+  return res;
+}
+
+function checkExactPackage(deps) {
   return Object.entries(deps)
     .reduce((res, [key, value]) => {
-      if (value.indexOf('git+') === 0) {
-        if (!value.includes('#')) {
-          res.log.push(`Dependency ${key} should be linked to git commit or branch, got "${value}"`);
-          res.result = true;
-          return res;
-        }
-      }
-      else if (nonExactCharacters.some(char=>value.includes(char))) {
-        res.log.push(`Dependency ${key} should be exact, got "${value}"`);
-        res.result = true;
-        return res;
-      }
-      return res;
-    }, {log: [], result: false});
+      return checkExactVersion(key, value, res);
+    }, {log: [], result: true});
 }
 
 function checkPackageByData(parsed)
@@ -31,12 +35,12 @@ function checkPackageByData(parsed)
   let foundNonExact;
   try {
     allDeps = Object.assign({}, parsed.dependencies || {}, parsed.devDependencies || {});
-    foundNonExact = checkExact(allDeps);
+    foundNonExact = checkExactPackage(allDeps);
   }
   catch (err) {
     return {result: false, log: err.message};
   }
-  if (foundNonExact.result) {
+  if (!foundNonExact.result) {
     const messages = `Check for exact dependencies failed!\n${foundNonExact.log.join('\n')}`;
     return {result: false, log: messages};
   }
@@ -57,4 +61,4 @@ function checkPackageByPath(path) {
 }
 
 
-module.exports = {checkPackageByData, checkPackageByPath};
+module.exports = {checkPackageByData, checkPackageByPath, checkExactVersion};

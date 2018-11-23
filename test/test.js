@@ -9,45 +9,97 @@ const checkExact = require('../check_exact');
 
 describe('Some simple tests', ()=>{
 
-  it('should correctly point non exact deps', ()=>{
+  describe('should correctly point non exact deps', ()=>{
+    const nonExactTests = [{
+      key: 'bluebird',
+      value: '^3.5.2',
+    }, {
+      key: 'eslint-config-airbnb-base',
+      value: '13.1.*',
+    }, {
+      key: 'eslint-plugin-standard',
+      value: '~4.0.0',
+    }, {
+      key: 'bluebird',
+      value: '^3.5.2',
+    }, {
+      key: 'bluebird',
+      value: '3.5.x',
+    }, {
+      key: 'bluebird',
+      value: '>3.5.2',
+    }, {
+      key: 'bluebird',
+      value: '<3.5.2',
+    }, {
+      key: 'bluebird',
+      value: '3.5.x',
+    }];
+    nonExactTests.forEach((test)=>{
+      it(`should see ${test.value} as non strict`, ()=>{
+        const res = {log: [], result: true};
+        checkExact.checkExactVersion(test.key, test.value, res);
+        assert.equal(res.result, false);
+        assert.equal(res.log[0], `Dependency ${test.key} should be exact, got "${test.value}"`);
+      });
+    });
+  });
+
+  describe('should correctly point non exact git deps', ()=>{
+    const nonExactTests = [{
+      key: 'ws.js',
+      value: 'git+https://github.com/onetwotrip/ws.js.git',
+    }, {
+      key: 'JSV',
+      value: 'git+https://github.com/onetwotrip/JSV.git',
+    }];
+    nonExactTests.forEach((test)=>{
+      it(`should see ${test.value} as non strict`, ()=>{
+        const res = {log: [], result: true};
+        checkExact.checkExactVersion(test.key, test.value, res);
+        assert.equal(res.result, false);
+        assert.equal(res.log[0], `Dependency ${test.key} should be linked to git commit or branch, got "${test.value}"`);
+      });
+    });
+  });
+
+  describe('should correctly point exact git deps', ()=>{
+    const nonExactTests = [{
+      key: 'ws.js',
+      value: 'git+https://github.com/onetwotrip/ws.js.git#v4.0.3',
+    }, {
+      key: 'JSV',
+      value: 'git+https://github.com/onetwotrip/JSV.git#v2.0.24',
+    }];
+    nonExactTests.forEach((test)=>{
+      it(`should see ${test.value} as strict`, ()=>{
+        const res = {log: [], result: true};
+        checkExact.checkExactVersion(test.key, test.value, res);
+        assert.equal(res.result, true);
+      });
+    });
+  });
+
+  it('should correctly check package data for non exact deps', ()=>{
     const checked = checkExact.checkPackageByData(nonExact);
     assert.equal(checked.result, false);
-    assert.deepEqual(checked.log, 'Check for exact dependencies failed!\n'
-      + 'Dependency bluebird should be exact, got "^3.5.2"\n'
-      + 'Dependency config should be exact, got "^2.0.1"\n'
-      + 'Dependency debug should be exact, got "^4.0.1"\n'
-      + 'Dependency node-telegram-bot-api should be exact, got "^0.30.0"\n'
-      + 'Dependency coveralls should be exact, got "^3.0.2"\n'
-      + 'Dependency eslint should be exact, got "^5.5.0"\n'
-      + 'Dependency eslint-config-airbnb-base should be exact, got "13.1.*"\n'
-      + 'Dependency eslint-loader should be exact, got "^2.1.0"\n'
-      + 'Dependency eslint-plugin-import should be exact, got "^2.14.0"\n'
-      + 'Dependency eslint-plugin-promise should be exact, got "^4.0.1"\n'
-      + 'Dependency eslint-plugin-standard should be exact, got "~4.0.0"\n'
-      + 'Dependency mocha should be exact, got "^5.2.0"\n'
-      + 'Dependency chai should be exact, got "^4.1.2"\n'
-      + 'Dependency nyc should be exact, got "^13.0.1"');
   });
 
-  it('should correctly point non exact git deps', ()=>{
-    const checked = checkExact.checkPackageByData(nonExactGit);
-    assert.equal(checked.result, false);
-    assert.deepEqual(checked.log, 'Check for exact dependencies failed!\n'
-      + 'Dependency JSV should be linked to git commit or branch, got "git+https://github.com/onetwotrip/JSV.git"\n'
-      + 'Dependency ws.js should be linked to git commit or branch, got "git+https://github.com/onetwotrip/ws.js.git"');
-  });
-
-
-  it('should correctly point exact deps', ()=>{
+  it('should correctly check package data for exact deps', ()=>{
     const checked = checkExact.checkPackageByData(exact);
     assert.equal(checked.result, true);
     assert.equal(checked.log, 'all deps are exact.');
   });
 
-  it('should correctly point exact git deps', ()=>{
+  it('should correctly check package data for exact git deps', ()=>{
     const checked = checkExact.checkPackageByData(exactGit);
     assert.equal(checked.log, 'all deps are exact.');
     assert.equal(checked.result, true);
+  });
+
+  it('should correctly check package data for non exact git deps', ()=>{
+    const checked = checkExact.checkPackageByData(nonExactGit);
+    assert.equal(checked.result, false);
   });
 
 
