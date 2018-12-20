@@ -3,7 +3,7 @@
   "bin": {
     "check-exact": "bin/bin.js"
   },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "check node project for exact dependencies",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "author": "Jehy http://github.com/jehy",
   "devDependencies": {
     "coveralls": "^3.0.2",
-    "eslint": "^5.9.0",
+    "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
