@@ -3,7 +3,7 @@
   "bin": {
     "check-exact": "bin/bin.js"
   },
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "check node project for exact dependencies",
   "repository": {
     "type": "git",

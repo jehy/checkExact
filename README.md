@@ -41,3 +41,15 @@ or
 ```bash
 npx check-exact ./package.json
 ```
+
+#### Usage (husky)
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-push": "check-exact package.json"
+    }
+  }
+}
+```
