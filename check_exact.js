@@ -14,7 +14,14 @@ function checkExactVersion(key, value, res)
     }
     return res;
   }
-  if (nonExactCharacters.some(char=>value.includes(char))) {
+  const hasMinorAndPatch = value.split('').reduce((count, item)=>{
+    if (item === '.')
+    {
+      return count + 1;
+    }
+    return count;
+  }, 0) > 1;
+  if (!hasMinorAndPatch || nonExactCharacters.some(char=>value.includes(char))) {
     res.log.push(`Dependency ${key} should be exact, got "${value}"`);
     res.result = false;
     return res;
